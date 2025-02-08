@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@chessire/pieces": "^1.0.3",
     "framer-motion": "^12.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
