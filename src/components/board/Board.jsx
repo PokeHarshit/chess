@@ -10,8 +10,27 @@ export const Board = ({
   checkmate,
   onSquareClick,
   selectedPiece,
-  possibleMoves
+  possibleMoves,
+  inCheck,
 }) => {
+  const getSquareClassName = (row, col, piece) => {
+    const isLight = (row + col) % 2 === 0;
+    const isSelected = selectedPiece && 
+      selectedPiece[0] === row && 
+      selectedPiece[1] === col;
+    const isPossibleMove = possibleMoves?.some(
+      ([r, c]) => r === row && c === col
+    ) || false;
+    const isKingInCheck = inCheck && piece?.type === 'king' && piece?.color === currentPlayer;
+
+    return `square 
+      ${isLight ? 'light-square' : 'dark-square'}
+      ${isSelected ? 'selected' : ''}
+      ${isPossibleMove ? 'possible-move' : ''}
+      ${isKingInCheck ? 'king-in-check' : ''}
+    `;
+  };
+
   return (
     <div className="grid grid-cols-8 gap-0 border-4 shadow-lg rounded overflow-hidden border-amber-700">
       {board.map((row, rowIndex) => 
@@ -36,6 +55,7 @@ export const Board = ({
               currentPlayer={currentPlayer}
               checkmate={checkmate}
               onClick={() => onSquareClick(rowIndex, colIndex)}
+              className={getSquareClassName(rowIndex, colIndex, piece)}
             />
           );
         })

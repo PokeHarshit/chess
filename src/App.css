@@ -1,0 +1,302 @@
+/* Add these styles to your existing App.css */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  height: 64px;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.sign-in-btn {
+  padding: 0.5rem 1.25rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.sign-in-btn:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* Dark mode adjustments */
+.dark .main-nav {
+  background: rgba(17, 24, 39, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .nav-brand {
+  color: #f3f4f6;
+}
+
+.dark .user-profile {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .user-name {
+  color: #e5e7eb;
+}
+
+.dark .sign-in-btn {
+  background: #3b82f6;
+}
+
+.dark .sign-in-btn:hover {
+  background: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.content-area {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* Remove padding */
+}
+
+/* Remove the personalized welcome and guest welcome sections since they're overlapping with the chess board */
+.personalized-welcome,
+.guest-welcome {
+  display: none;
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.active-player {
+  background: rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+  transform: scale(1.05);
+}
+
+.player-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #fff;
+}
+
+.black-player {
+  background-image: url('https://i.imgur.com/example1.jpg'); /* Replace with actual anime character image URL */
+}
+
+.white-player {
+  background-image: url('https://i.imgur.com/example2.jpg'); /* Replace with actual anime character image URL */
+}
+
+.player-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dark .player-name {
+  color: #e5e7eb;
+}
+
+.dark .player-card {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dark .active-player {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+.dark .active-player .player-label {
+  color: #60a5fa;
+}
+
+.king-in-check {
+  position: relative;
+}
+
+.king-in-check::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(239, 68, 68, 0.4); /* red tint */
+  z-index: 1;
+  pointer-events: none;
+  animation: checkPulse 2s infinite;
+}
+
+@keyframes checkPulse {
+  0% {
+    background: rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    background: rgba(239, 68, 68, 0.2);
+  }
+  100% {
+    background: rgba(239, 68, 68, 0.4);
+  }
+}
+
+/* Adjust the spacing above the chess board */
+.w-full.flex.justify-between.items-center.mb-4 {
+  margin-bottom: 0.5rem;
+}
+
+.status-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.player-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #666;
+  transition: all 0.3s ease;
+}
+
+.player-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #666;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.active-player {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 12px rgba(59, 130, 246, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.active-player .player-indicator {
+  background: #3b82f6;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.active-player .player-label {
+  color: #3b82f6;
+}
+
+/* Dark mode adjustments */
+.dark .status-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .player-label {
+  color: #9ca3af;
+}
+
+.dark .active-player {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.dark .active-player .player-label {
+  color: #60a5fa;
+}
+
+/* Add status card check styles */
+.player-in-check {
+  border-color: rgba(239, 68, 68, 0.4);
+  animation: checkPulse 1.5s ease-in-out infinite;
+}
+
+.player-in-check .player-indicator {
+  background: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+.player-in-check .player-label {
+  color: #ef4444 !important;
+}
+
+@keyframes checkPulse {
+  0% { border-color: rgba(239, 68, 68, 0.4); }
+  50% { border-color: rgba(239, 68, 68, 0.6); }
+  100% { border-color: rgba(239, 68, 68, 0.4); }
+}
